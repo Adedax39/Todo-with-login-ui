@@ -11,3 +11,8 @@ public interface IPasswordGenerator
 {
     string GenerateRandomPassword();
 }
+public interface IEmailService
+{
+    Task SendEmailAsync(string email,string password);
+
+}

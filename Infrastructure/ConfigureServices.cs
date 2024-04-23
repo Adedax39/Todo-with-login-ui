@@ -19,6 +19,8 @@ namespace Infrastructure
 
             services.AddTransient<ITodoRepository, TodoRepository>();
             services.AddTransient<IRegisterRepository, RegisterRepository>();
+            services.AddScoped<IPasswordGenerator, PasswordRepository>();
+            services.AddScoped<IEmailService, EmailService>();
             return services;
         }
     }

@@ -5,6 +5,7 @@ namespace Infrastructure.Data;
 
 public class TodoDbContext : DbContext
 {
+
     public TodoDbContext(DbContextOptions<TodoDbContext> dbContextOptions) : base(dbContextOptions)
     {
     }
