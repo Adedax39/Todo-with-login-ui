@@ -11,6 +11,8 @@ builder.Services.AddApplicationService();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 
+//builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
 
 builder.Services.AddControllers(options =>
 {
@@ -37,3 +39,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

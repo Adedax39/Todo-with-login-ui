@@ -16,7 +16,7 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
         private readonly TodoDbContext _dbContext;
     private readonly IEmailService emailService;
 
-    public RegisterController(TodoDbContext dbContext,IEmailService emailService)
+    public RegisterController(TodoDbContext dbContext, IEmailService emailService)
         {
             _dbContext = dbContext;
         this.emailService = emailService;
@@ -29,10 +29,11 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
             var createTodo = await Mediator.Send(createRegisterCommand);
             string randomPassword = GenerateRandomPassword();
             SavePasswordToDatabase(createRegisterCommand.EmailAddress, randomPassword);
-            await this.emailService.SendEmailAsync(createRegisterCommand.EmailAddress, randomPassword);
+        await this.emailService.SendEmailAsync(createRegisterCommand.EmailAddress, randomPassword);
 
         // Return a '201 Created' response with the newly created task
         return Ok(Created(Request.Path, createTodo));
+
         }
 
         private string GenerateRandomPassword()

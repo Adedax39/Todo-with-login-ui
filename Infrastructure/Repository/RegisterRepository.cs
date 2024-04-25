@@ -26,7 +26,7 @@ public class PasswordRepository : IPasswordGenerator
 { 
         public string GenerateRandomPassword()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-";
+            const string chars = "0123456789";
             const int length = 4; // Length of the generated password
 
             Random random = new Random();

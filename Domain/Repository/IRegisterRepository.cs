@@ -13,6 +13,6 @@ public interface IPasswordGenerator
 }
 public interface IEmailService
 {
-    Task SendEmailAsync(string email,string password);
+    Task SendEmailAsync(string email, string password);
 
 }
