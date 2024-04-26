@@ -35,28 +35,61 @@ public class PasswordRepository : IPasswordGenerator
         }
     
 }
-public class EmailService : IEmailService
+public class PapercutEmailService : IEmailService
 {
-    public async Task SendEmailAsync(string email, string password)
+    //public async Task SendEmailAsync(string email, string password)
+    //{
+    //    string smtpServer = "smtp.gmail.com";
+    //    int smtpPort = 587;
+    //    string senderEmail = "lasathrathnayake@gmail.com";
+    //    string senderPassword = "Adedax91939@Batman";
+
+    //    // Create the email message
+    //    MailMessage mail = new MailMessage(new MailAddress(senderEmail), new MailAddress(email));
+    //    mail.Subject = "Your Password";
+    //    mail.Body = $"Your password is: {password}";
+
+    //    // Configure SMTP client
+    //    SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+    //    smtpClient.UseDefaultCredentials = false;
+    //    smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
+    //    smtpClient.EnableSsl = true;
+
+    //    // Send the email
+    //    await smtpClient.SendMailAsync(mail);
+    //}
+    private readonly string _smtpServer;
+    private readonly int _smtpPort;
+
+    public PapercutEmailService(string smtpServer, int smtpPort)
     {
-        string smtpServer = "smtp.gmail.com";
-        int smtpPort = 587;
-        string senderEmail = "lasathrathnayake@gmail.com";
-        string senderPassword = "Adedax91939@Batman";
-
-        // Create the email message
-        MailMessage mail = new MailMessage(new MailAddress(senderEmail), new MailAddress(email));
-        mail.Subject = "Your Password";
-        mail.Body = $"Your password is: {password}";
-
-        // Configure SMTP client
-        SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
-        smtpClient.UseDefaultCredentials = false;
-        smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
-        smtpClient.EnableSsl = true;
-
-        // Send the email
-        await smtpClient.SendMailAsync(mail);
+        _smtpServer = smtpServer;
+        _smtpPort = smtpPort;
     }
+
+    public async Task SendEmailAsync(string toAddress, string subject, string body)
+    {
+        // Create the email message
+        using (var mail = new MailMessage("lasathrathnayake@gmail.com", toAddress, subject, body))
+        {
+            // Create the SMTP client
+            using (var smtpClient = new SmtpClient(_smtpServer, _smtpPort))
+            {
+                smtpClient.EnableSsl = false;
+
+                try
+                {
+                    // Send the email asynchronously
+                    await smtpClient.SendMailAsync(mail);
+                    Console.WriteLine("Email sent successfully!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to send email: " + ex.Message);
+                }
+            }
+        }
+    }
+
 }
 

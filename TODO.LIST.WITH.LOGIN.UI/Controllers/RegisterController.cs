@@ -5,22 +5,23 @@ using Infrastructure.Data;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-
+namespace TODO.LIST.WITH.LOGIN.UI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
     public class RegisterController : ApiBaseController
     {
         private readonly TodoDbContext _dbContext;
-    private readonly IEmailService emailService;
+        private readonly IEmailService _emailService;
 
-    public RegisterController(TodoDbContext dbContext, IEmailService emailService)
+        public RegisterController(TodoDbContext dbContext, IEmailService emailService)
         {
             _dbContext = dbContext;
-        this.emailService = emailService;
-    }
+            _emailService = emailService;
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateTaskAsync(CreateRegisterCommand createRegisterCommand)
@@ -29,11 +30,12 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
             var createTodo = await Mediator.Send(createRegisterCommand);
             string randomPassword = GenerateRandomPassword();
             SavePasswordToDatabase(createRegisterCommand.EmailAddress, randomPassword);
-        await this.emailService.SendEmailAsync(createRegisterCommand.EmailAddress, randomPassword);
 
-        // Return a '201 Created' response with the newly created task
-        return Ok(Created(Request.Path, createTodo));
+            // Send email
+            await _emailService.SendEmailAsync(createRegisterCommand.EmailAddress, "Welcome to our platform!", $"Your password: {randomPassword}");
 
+            // Return a '201 Created' response with the newly created task
+            return Ok(Created(Request.Path, createTodo));
         }
 
         private string GenerateRandomPassword()
@@ -57,4 +59,4 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
             _dbContext.SaveChanges();
         }
     }
-
+}
