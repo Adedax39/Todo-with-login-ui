@@ -18,12 +18,15 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers
         private readonly TodoDbContext _dbContext;
         private readonly IEmailService _emailService;
         private readonly IPasswordGenerator _passwordGenerator;
+        private readonly PasswordHasher _passwordHasher;
 
-        public RegisterController(TodoDbContext dbContext, IEmailService emailService,IPasswordGenerator passwordGenerator)
+        public RegisterController(TodoDbContext dbContext, IEmailService emailService,
+            IPasswordGenerator passwordGenerator, PasswordHasher passwordHasher)
         {
             _dbContext = dbContext;
             _emailService = emailService;
             _passwordGenerator = passwordGenerator;
+            _passwordHasher = passwordHasher;
         }
 
         [HttpPost]
@@ -32,35 +35,33 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers
             // Send the command to create the task
             var randomPassword = _passwordGenerator.GenerateRandomPassword();
             createRegisterCommand.Password = randomPassword;
-            var createTodo = await Mediator.Send(createRegisterCommand);
+            var registered = await Mediator.Send(createRegisterCommand);
             // Send email
-            await _emailService.SendEmailAsync(createRegisterCommand.EmailAddress, "Your password for Todo-List!", $"Your password: {randomPassword}");
-            
+            await _emailService.SendEmailAsync(createRegisterCommand.EmailAddress, "Your password for Todo-List!",
+                $"Your password: {randomPassword}");
+
             //Return a '201 Created' response with the newly created task
-            return Created(Request.Path, createTodo);
+            return Ok(registered);
         }
-        
+
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync(CreateRegisterCommand createRegisterCommand)
         {
-            var user = await _dbContext.Registers.FirstOrDefaultAsync(u => u.UserName == createRegisterCommand.UserName);
+            var user = await _dbContext.Registers.FirstOrDefaultAsync(u =>
+                u.UserName == createRegisterCommand.UserName);
             if (user == null)
             {
                 // User not found, return 404 Not Found
                 return NotFound("User not found");
             }
-        
-            // Check if password matches
-            if (user.Password != createRegisterCommand.Password)
+
+            var passwordMatches = PasswordHasher.VerifyPassword(createRegisterCommand.Password, user.Password);
+            if (!passwordMatches)
             {
-                // Incorrect password, return 401 Unauthorized
-                return Unauthorized("Incorrect password");
+                return Unauthorized("Incorrect Password");
             }
-        
-            // Authentication successful, you can return additional data if needed
-            return Ok("Authentication successful");
+
+            return Ok("Authentication Successful!");
         }
-
-
     }
 }

@@ -21,7 +21,7 @@ namespace Infrastructure
             services.AddTransient<IRegisterRepository, RegisterRepository>();
             services.AddScoped<IPasswordGenerator, PasswordRepository>();
             services.AddTransient<IEmailService>(sp => new PapercutEmailService("127.0.0.1", 25));
-            
+            services.AddScoped<PasswordHasher>();
 
             
             return Task.FromResult(services);
