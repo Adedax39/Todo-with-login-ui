@@ -1,38 +1,27 @@
-.App {
-  text-align: center;
+.app {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* margin-top: -70px; */
+  height: 100vh;
+  background-image: url('./images/newtraveler3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* filter: blur(6px);  */
+  z-index: -10; /* Send the background to the back */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* New style for Navbar transparency */
+.navbar.bg-body-tertiary {
+  background-color: transparent !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
