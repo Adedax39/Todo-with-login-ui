@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class inital : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,21 +32,33 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Task = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TaskActivation = table.Column<int>(type: "int", nullable: false),
-                    DateOnly = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateOnly = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegisterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Todos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Todos_Registers_RegisterId",
+                        column: x => x.RegisterId,
+                        principalTable: "Registers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Todos_RegisterId",
+                table: "Todos",
+                column: "RegisterId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Registers");
+                name: "Todos");
 
             migrationBuilder.DropTable(
-                name: "Todos");
+                name: "Registers");
         }
     }
 }

@@ -9,4 +9,6 @@ public class CreateTodoCommand : IRequest<TodoVm>
     public string? Task { get; set; }
     public TaskActivation TaskActivation { get; set; }
     public DateTime DateOnly { get; set; }
+   
+    public int RegisterId { get; set; }
 }

@@ -6,4 +6,5 @@ public class Register
     public string UserName { get; set; } = "Lasath";
     public string EmailAddress { get; set; } = "lasathrathnayake@gmail.com";
     public string Password { get; set; } = "***";
+    public ICollection<Todo> Todos { get; set; }
 }

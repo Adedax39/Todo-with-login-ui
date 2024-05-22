@@ -20,7 +20,9 @@ namespace Infrastructure.Repository
         }
         public async Task<List<Todo>> GetAllTasksAsync()
         {
-            return await _todoDbContext.Todos.ToListAsync();
+            return await _todoDbContext.Todos
+                .Include(t => t.Register)
+                .ToListAsync();
         }
 
         public async Task<Todo> GetIdAsync(int id)

@@ -18,7 +18,7 @@ public class CreateTodoCommandHandler : IRequestHandler<CreateTodoCommand,TodoVm
     }
     public async Task<TodoVm> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
     {
-        var todoEntity = new Domain.Entity.Todo() { Task = request.Task, TaskActivation = request.TaskActivation, DateOnly = request.DateOnly };
+        var todoEntity = new Domain.Entity.Todo() { Task = request.Task, TaskActivation = request.TaskActivation, DateOnly = request.DateOnly,RegisterId = request.RegisterId};
         var todo = await _todoRepository.CreateAsync(todoEntity);
         var todolist = _mapper.Map<TodoVm>(todo);
         return todolist;

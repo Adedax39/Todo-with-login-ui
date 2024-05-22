@@ -26,14 +26,12 @@ public class TodoController : ApiBaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateTaskAsync(CreateTodoCommand createTodoCommand)
+    public async Task<ActionResult<TodoVm>> CreateTodo([FromBody] CreateTodoCommand command)
     {
-        var createTodo = await Mediator.Send(createTodoCommand);
-        return CreatedAtAction(nameof(GetTaskByIdAsync), new
-        {
-            id = createTodo.Id
-        }, createTodo);
+        var result = await _mediator.Send(command);
+        return Ok(result);
     }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateTaskAsync(int id, UpdateTodoCommand updateTodoCommand)

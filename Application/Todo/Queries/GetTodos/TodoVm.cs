@@ -1,4 +1,5 @@
 using Application.Common.Mappings;
+using Application.Register.Commands.CreateRegister;
 using Application.Todo.Queries.GetTodoById;
 using Domain.Enums;
 using MediatR;
@@ -11,4 +12,6 @@ public class TodoVm : IMapFrom<Domain.Entity.Todo>
     public string? Task { get; set; }
     public TaskActivation TaskActivation { get; set; }
     public DateTime DateOnly { get; set; }
+    public int RegisterId { get; set; }
+    public RegisterVm Register { get; set; }
 }

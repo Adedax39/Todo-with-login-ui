@@ -7,7 +7,7 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers;
 [ApiController]
 public abstract class ApiBaseController : ControllerBase
 {
-    private ISender? _mediator;
+    public ISender? _mediator;
 
     protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 }

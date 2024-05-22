@@ -58,6 +58,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateOnly")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("RegisterId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Task")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,7 +69,25 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RegisterId");
+
                     b.ToTable("Todos");
+                });
+
+            modelBuilder.Entity("Domain.Entity.Todo", b =>
+                {
+                    b.HasOne("Domain.Entity.Register", "Register")
+                        .WithMany("Todos")
+                        .HasForeignKey("RegisterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Register");
+                });
+
+            modelBuilder.Entity("Domain.Entity.Register", b =>
+                {
+                    b.Navigation("Todos");
                 });
 #pragma warning restore 612, 618
         }
