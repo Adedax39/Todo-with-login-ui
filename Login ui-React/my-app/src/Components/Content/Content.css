@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Sevillana&display=swap');.MuiBox-root {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center; 
+    align-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+.success{
+    font-size: 200px;
+    color: aliceblue;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+
+}
+.message {
+    font-size: 30px;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    color: aliceblue;
+    text-align: center;
+
+}
+.message1 {
+    font-size: 20px;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    color: aliceblue;
+    text-align: center;
+
+}
+.myButton {
+	background-color:transparent;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: "Atkinson Hyperlegible", sans-serif;
+	font-size:22px;
+    font-weight: 800;
+	padding:12px 50px;
+	text-decoration:none;
+    margin-left: 10px;
+}
+.myButton:hover {
+	background-color:whitesmoke;
+    color:#000000;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.myButton1 {
+	background-color:whitesmoke;
+    color:#000000;
+    display:inline-block;
+	cursor:pointer;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+	font-size:22px;
+    font-weight: 800;
+	padding:12px 50px;
+	text-decoration:none;
+    margin-right: 10px;
+}
+.myButton1:hover {
+
+    background-color:transparent;	
+	color:#ffffff;
+	
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}

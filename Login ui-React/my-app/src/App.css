@@ -11,10 +11,10 @@
   width: 100%;
   /* margin-top: -70px; */
   height: 100vh;
-  background-image: url('./images/newtraveler3.jpg');
+  background-image: url('./images/image.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  /* filter: blur(6px);  */
+   /* filter: blur(6px);   */
   z-index: -10; /* Send the background to the back */
 }
 
@@ -22,6 +22,7 @@
 .navbar.bg-body-tertiary {
   background-color: transparent !important;
 }
+
 
 
 
