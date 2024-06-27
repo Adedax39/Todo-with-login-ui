@@ -18,3 +18,14 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+// export default function App() {
+//   return (
+//     <Spline scene="https://prod.spline.design/J1cHlCskNK99BAFX/scene.splinecode" />
+//   );
+// }
+

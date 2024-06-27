@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import './Login.css'
+import './signup.css'
 
 
-const SignUpForm = ({ show, handleClose }) => {
+const SignUpForm1 = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose} centered >
       <Modal.Header closeButton>
@@ -12,12 +12,12 @@ const SignUpForm = ({ show, handleClose }) => {
       <Modal.Body>
         <Form className="SignUpForm">
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>User Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter email" />
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Enter User password" />
+            <Form.Label>User Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter User Name" />
           </Form.Group>
           <div class="d-grid gap-2">
             <button class="btn btn-light" type="button">Sign in</button>
@@ -28,4 +28,4 @@ const SignUpForm = ({ show, handleClose }) => {
   );
 };
 
-export default SignUpForm;
+export default SignUpForm1;
