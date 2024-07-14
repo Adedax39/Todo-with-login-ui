@@ -37,7 +37,7 @@
     text-align: center;
 
 }
-.myButton {
+.loginButton {
 	background-color:transparent;
 	display:inline-block;
 	cursor:pointer;
@@ -49,16 +49,16 @@
 	text-decoration:none;
     margin-left: 10px;
 }
-.myButton:hover {
+.loginButton:hover {
 	/* filter: blur(1px); */
     color:#646464;
 
 }
-.myButton:active {
+.loginButton:active {
 	position:relative;
 	top:1px;
 }
-.myButton1 {
+.signupButton {
 	background-color:whitesmoke;
     color:#000000;
     display:inline-block;
@@ -70,13 +70,13 @@
 	text-decoration:none;
     margin-right: 10px;
 }
-.myButton1:hover {
+.signupButton:hover {
 
     background-color:transparent;	
 	color:#ffffff;
 	
 }
-.myButton1:active {
+.signupButton:active {
 	position:relative;
 	top:1px;
 }
@@ -106,3 +106,16 @@
     align-items: center;
     text-align: center;
 }
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* margin-top: -70px; */
+    height: 100vh;
+    background-image: url('D:\Todolist\TODO.LIST.WITH.LOGIN.UI\Login ui-React\my-app\src\images\image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+     /* filter: blur(6px);   */
+    z-index: -10; /* Send the background to the back */
+  }

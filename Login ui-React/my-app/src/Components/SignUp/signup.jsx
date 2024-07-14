@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import './signup.css'
 
 
-const SignUpForm1 = ({ show, handleClose }) => {
+const SignUpForm = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose} centered >
       <Modal.Header closeButton>
@@ -28,4 +28,4 @@ const SignUpForm1 = ({ show, handleClose }) => {
   );
 };
 
-export default SignUpForm1;
+export default SignUpForm;

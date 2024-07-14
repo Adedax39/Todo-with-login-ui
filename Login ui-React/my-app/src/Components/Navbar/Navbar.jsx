@@ -7,7 +7,7 @@ const Navbar1 = () =>{
     return(
     <Navbar className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home" className='Topic'>Todo-App</Navbar.Brand>
+        <Navbar.Brand href="/" className='Topic'>Todo-App</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
         <Button  className='Topic'>Created By Lasath Rathnayake</Button>

@@ -1,37 +1,42 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import './Content.css'
-import Button from 'react-bootstrap/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useState } from 'react';
-import SignUpForm from '../Login/Login.jsx';
-import SignUpForm1 from '../SignUp/signup.jsx';
-
+import SignUpForm from '../SignUp/signup.jsx';
+import LoginForm from '../LoginNew/loginNew.jsx';
+import { useNavigate } from 'react-router-dom';
 export default function BoxSystemProps() {
+  const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-  const [showSignUp1, setShowSignUp1] = useState(false);
   const [visible, setVisible] = useState(false);
-  const handleShow = () => {
-    setShowSignUp(true)
-  setVisible(true)};
+  const navigate = useNavigate();
+
   const handleClose = () => {
-    setShowSignUp(false)
-  setVisible(false)};
-  
-  const handleShow1 = () => {
-    setVisible(true)
-    setShowSignUp1(true);
-  }
+    setShowLogin(false)
+    setVisible(false)
+  };
+
   const handleClose1 = () => {
     setVisible(false)
-    setShowSignUp1(false)
+    setShowSignUp(false)
   };
+  const handleShowSignUp = () => {
+    setVisible(true)
+    setShowSignUp(true);
+  }
+  const handleShowLogin = () => {
+    setVisible(true)
+    setShowLogin(true);
+  }
 
 
 
 
   return (
-    <div className={`MuiBox-root ${showSignUp || showSignUp1 ? 'change-background' : ''}`}>
+    <div>
+<div className='background'></div>
+    
+    <div className={`MuiBox-root ${showLogin || showSignUp ? 'change-background' : ''}`}>
       {!visible && (
         <div className='content-page'>
           <h1 className='success'>Success</h1>
@@ -44,19 +49,19 @@ export default function BoxSystemProps() {
             <br />
             <br />
             <div className='button-group'>
-            <a href="#" class="myButton1" onClick={handleShow1}>Sign up<ArrowForwardIosIcon /></a>
-            <a href="#" class="myButton" onClick={handleShow}>Sign in<ArrowForwardIosIcon /></a>
+              <a className="signupButton" onClick={handleShowSignUp}>Sign up<ArrowForwardIosIcon /></a>
+              <a className="loginButton" onClick={handleShowLogin}>Sign in<ArrowForwardIosIcon /></a>
             </div>
           </div>
         </div>
       )}
 
       {visible && (<div>
-        <SignUpForm show={showSignUp} handleClose={handleClose} />
-        <SignUpForm1 show={showSignUp1} handleClose={handleClose1} />
+        <LoginForm show={showLogin} handleClose={handleClose} />
+        <SignUpForm show={showSignUp} handleClose={handleClose1} />
       </div>)}
 
     </div>
-
+    </div>
   );
 }
