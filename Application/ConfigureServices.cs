@@ -22,6 +22,14 @@ namespace Application
                 ctg.RegisterServicesFromAssembly(typeof(ConfigureServices).Assembly);
                 ctg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp",
+                    builder => builder
+                        .WithOrigins("http://localhost:3000") // Add the React app URL
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
             return services;
         }
     }

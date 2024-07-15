@@ -39,21 +39,21 @@ namespace TODO.LIST.WITH.LOGIN.UI.Controllers
             // Send email
             await _emailService.SendEmailAsync(createRegisterCommand.EmailAddress, "Your password for Todo-List!",
                 $"Your password: {randomPassword}");
-
-            //Return a '201 Created' response with the newly created task
+            
             return Ok(registered);
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync(CreateRegisterCommand createRegisterCommand)
         {
+            
             var user = await _dbContext.Registers.FirstOrDefaultAsync(u =>
                 u.UserName == createRegisterCommand.UserName);
             if (user == null)
             {
-                // User not found, return 404 Not Found
                 return NotFound("User not found");
             }
+            
 
             var passwordMatches = PasswordHasher.VerifyPassword(createRegisterCommand.Password, user.Password);
             if (!passwordMatches)
